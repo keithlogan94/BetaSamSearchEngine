@@ -1,7 +1,10 @@
 
 import { Sequelize, DataTypes } from 'sequelize'
 
-const sequelize = new Sequelize('sqlite::memory:') // Example for sqlite
+const sequelize = new Sequelize('test', 'root', 'test', {
+    host: 'mysql-service',
+    dialect: 'mysql'
+});
 
 export const ContractOpportunity = sequelize.define("contractOpportunity", {
     noticeId: DataTypes.STRING,

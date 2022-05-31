@@ -90,28 +90,63 @@ const theme = createTheme({
 
 });
 
-let searchBy = [
-    {
-        value: 'id',
-        description: 'Id',
-    },
-    {
-        value: 'noticeId',
-        description: 'Notice Id',
-    },
-    {
-        value: 'title',
-        description: 'Title',
-    },
-    {
-        value: 'solNumber',
-        description: 'Sol Number',
-    },
-    {
-        value: 'departmentAgency',
-        description: 'Department / Agency',
-    },
+
+let fields =    [
+    'noticeId',
+    'title',
+    'solNumber',
+    'departmentAgency',
+    'cGac',
+    'subTier',
+    'fpdsCode',
+    'office',
+    'aacCode',
+    'postedDate',
+    'type',
+    'baseType',
+    'archiveType',
+    'archiveDate',
+    'setAsideCode',
+    'setAside',
+    'responseDeadline',
+    'naicsCode',
+    'classificationCode',
+    'popStreetAddress',
+    'popCity',
+    'popState',
+    'popZip',
+    'popCountry',
+    'active',
+    'awardNumber',
+    'awardDate',
+    'awardMoney',
+    'awardee',
+    'primaryContactTitle',
+    'primaryContactFullName',
+    'primaryContactEmail',
+    'primaryContactPhone',
+    'primaryContactFax',
+    'secondaryContactTitle',
+    'secondaryContactFullName',
+    'secondaryContactContactEmail',
+    'secondaryContactContactPhone',
+    'secondaryContactFax',
+    'organizationType',
+    'state',
+    'city',
+    'zip',
+    'countryCode',
+    'additionalInfoLink',
+    'link',
+    'description',
 ]
+
+let searchBy = fields.map((m) => {
+    return {
+        value: m,
+        description: m
+    }
+})
 
 let equalityList = [
     {
@@ -145,7 +180,7 @@ class App extends React.Component {
     }
 
     async componentDidMount() {
-        let data = await axios.get("http://localhost:3000/number-of-opportunities")
+        let data = await axios.get("//api.searchengine.beta.sam.recro.kloudrun.com/number-of-opportunities")
         console.log(data)
         this.setState({
             numberOfResults: data.data.number
@@ -259,6 +294,7 @@ class App extends React.Component {
 
                                             <Button onClick={() => {
                                                 this.setState({
+                                                    page: 1,
                                                     activeSearches: [...this.state.activeSearches,
                                                         [
                                                             this.state.searchByActive,

@@ -116,7 +116,7 @@ export default class ContractOpportunities extends React.Component {
             activeSearches = []
         }
 
-        const result = await axios.get("http://localhost:3000/contract-opportunities", {
+        const result = await axios.get("//api.searchengine.beta.sam.recro.kloudrun.com/contract-opportunities", {
             params: {
                 page: this.props.page,
                 pageSize: this.props.pageSize,

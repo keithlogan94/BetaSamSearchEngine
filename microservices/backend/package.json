@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d lib",
+    "start": "node lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,6 +22,7 @@
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "express": "^4.18.1",
+    "mysql2": "^2.3.3",
     "sequelize": "^6.20.1",
     "sqlite3": "^5.0.8"
   }
