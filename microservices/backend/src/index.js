@@ -22,7 +22,7 @@ function saveToDB(stream) {
         .on('data', (data) => results.push(data))
         .on('end', async () => {
 
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < results.length; i++) {
                 const co = results[i]
                 const { NoticeId: noticeId,
                     Title: title,
@@ -72,56 +72,59 @@ function saveToDB(stream) {
                     Link: link,
                     Description: description
                 } = co
-                await ContractOpportunity.create({
-                    noticeId,
-                    title,
-                    solNumber,
-                    departmentAgency,
-                    cGac,
-                    subTier,
-                    fpdsCode,
-                    office,
-                    aacCode,
-                    postedDate,
-                    type,
-                    baseType,
-                    archiveType,
-                    archiveDate,
-                    setAsideCode,
-                    setAside,
-                    responseDeadline,
-                    naicsCode,
-                    classificationCode,
-                    popStreetAddress,
-                    popCity,
-                    popState,
-                    popZip,
-                    popCountry,
-                    active,
-                    awardNumber,
-                    awardDate,
-                    awardMoney,
-                    awardee,
-                    primaryContactTitle,
-                    primaryContactFullName,
-                    primaryContactEmail,
-                    primaryContactPhone,
-                    primaryContactFax,
-                    secondaryContactTitle,
-                    secondaryContactFullName,
-                    secondaryContactContactEmail,
-                    secondaryContactContactPhone,
-                    secondaryContactFax,
-                    organizationType,
-                    state,
-                    city,
-                    zip,
-                    countryCode,
-                    additionalInfoLink,
-                    link,
-                    description
-                });
-
+                try {
+                    await ContractOpportunity.create({
+                        noticeId,
+                        title,
+                        solNumber,
+                        departmentAgency,
+                        cGac,
+                        subTier,
+                        fpdsCode,
+                        office,
+                        aacCode,
+                        postedDate,
+                        type,
+                        baseType,
+                        archiveType,
+                        archiveDate,
+                        setAsideCode,
+                        setAside,
+                        responseDeadline,
+                        naicsCode,
+                        classificationCode,
+                        popStreetAddress,
+                        popCity,
+                        popState,
+                        popZip,
+                        popCountry,
+                        active,
+                        awardNumber,
+                        awardDate,
+                        awardMoney,
+                        awardee,
+                        primaryContactTitle,
+                        primaryContactFullName,
+                        primaryContactEmail,
+                        primaryContactPhone,
+                        primaryContactFax,
+                        secondaryContactTitle,
+                        secondaryContactFullName,
+                        secondaryContactContactEmail,
+                        secondaryContactContactPhone,
+                        secondaryContactFax,
+                        organizationType,
+                        state,
+                        city,
+                        zip,
+                        countryCode,
+                        additionalInfoLink,
+                        link,
+                        description
+                    });
+                } catch (e) {
+                    console.error(e)
+                }
             }
         });
 }

@@ -8,7 +8,7 @@ const sequelize = new Sequelize('test', 'root', 'test', {
 
 export const ContractOpportunity = sequelize.define("contractOpportunity", {
     noticeId: DataTypes.STRING,
-    title: DataTypes.STRING,
+    title: DataTypes.TEXT,
     solNumber: DataTypes.STRING,
     departmentAgency: DataTypes.STRING,
     cGac: DataTypes.STRING,
@@ -16,14 +16,14 @@ export const ContractOpportunity = sequelize.define("contractOpportunity", {
     fpdsCode: DataTypes.STRING,
     office: DataTypes.STRING,
     aacCode: DataTypes.STRING,
-    postedDate: DataTypes.DATE,
+    postedDate: DataTypes.STRING,
     type: DataTypes.STRING,
     baseType: DataTypes.STRING,
     archiveType: DataTypes.STRING,
-    archiveDate: DataTypes.DATE,
+    archiveDate: DataTypes.STRING,
     setAsideCode: DataTypes.STRING,
     setAside: DataTypes.STRING,
-    responseDeadline: DataTypes.DATE,
+    responseDeadline: DataTypes.STRING,
     naicsCode: DataTypes.STRING,
     classificationCode: DataTypes.STRING,
     popStreetAddress: DataTypes.STRING,
@@ -31,9 +31,9 @@ export const ContractOpportunity = sequelize.define("contractOpportunity", {
     popState: DataTypes.STRING,
     popZip: DataTypes.STRING,
     popCountry: DataTypes.STRING,
-    active: DataTypes.BOOLEAN,
+    active: DataTypes.STRING,
     awardNumber: DataTypes.STRING,
-    awardDate: DataTypes.DATE,
+    awardDate: DataTypes.STRING,
     awardMoney: DataTypes.STRING,
     awardee: DataTypes.STRING,
     primaryContactTitle: DataTypes.STRING,
@@ -53,7 +53,7 @@ export const ContractOpportunity = sequelize.define("contractOpportunity", {
     countryCode: DataTypes.STRING,
     additionalInfoLink: DataTypes.STRING,
     link: DataTypes.STRING,
-    description: DataTypes.STRING
+    description: DataTypes.TEXT
 });
 
 export default async function sync() {
