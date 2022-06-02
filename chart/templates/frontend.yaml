@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: frontend
@@ -38,8 +38,13 @@ metadata:
   name: frontend-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - searchengine.beta.sam.recro.kloudrun.com
+      secretName: search-engine-tls
   rules:
     - host: "searchengine.beta.sam.recro.kloudrun.com"
       http:
