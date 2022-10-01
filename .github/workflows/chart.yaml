@@ -7,7 +7,7 @@ on:
 
 jobs:
   helm:
-    runs-on: helm:latest
+    image: helm:latest
     steps:
       -
         name: Check out code
