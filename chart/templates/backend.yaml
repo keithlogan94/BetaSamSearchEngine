@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5,7 +6,7 @@ metadata:
   labels:
     app: backend
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -16,9 +17,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: keithlogan94/beta-sam-search-engine:latest
-          ports:
-            - containerPort: 3000
+          image: ghcr.io/keithlogan94/betasam-searchengine/backend:latest
 ---
 apiVersion: v1
 kind: Service
