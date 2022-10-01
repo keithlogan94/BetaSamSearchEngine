@@ -20,7 +20,7 @@ jobs:
         env:
             REGISTRY: ghcr.io
             USERNAME: ${{ github.actor }}
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.DOCKER_LOGIN_TOKEN }}
         run: |
           echo ${GITHUB_TOKEN} | docker login --username ${USERNAME} --password-stdin ${REGISTRY}
           docker-compose build
