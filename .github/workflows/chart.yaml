@@ -23,3 +23,13 @@ jobs:
           chmod 700 get_helm.sh
           ./get_helm.sh
           helm package chart 
+      
+      -
+        name: Upload Release
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.DOCKER_LOGIN_TOKEN }}
+        with:
+          file: "*.tgz"
+          tags: true
+          draft: true
