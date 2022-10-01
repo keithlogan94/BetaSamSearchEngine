@@ -31,5 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DOCKER_LOGIN_TOKEN }}
         with:
           file: "*.tgz"
-          tags: true
-          draft: true
+          overwrite: true
+          tags: false
+          draft: false
+          verbose: true
