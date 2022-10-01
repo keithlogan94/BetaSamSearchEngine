@@ -152,78 +152,8 @@ function getDate() {
 }
 
 
-app.get("/sync-opportunities", async (req, res) => {
-    await saveTodaysOpportunities(saveToDB)
-    return res.json({ message: "Synced"})
-})
 
-app.get("/contract-opportunities", async (req, res) => {
+saveTodaysOpportunities(saveToDB)
 
-    let offset = 0
-    let limit = 100
 
-    let { page, pageSize, activeSearches } = req.query
 
-    page = Number.parseInt(page)
-    if (isNaN(page)) {
-        page = 1
-    }
-    if (page < 1) {
-        page = 1
-    }
-
-    pageSize = Number.parseInt(pageSize)
-    if (isNaN(pageSize)) {
-        pageSize = 10
-    }
-    if (pageSize < 1) {
-        pageSize = 10
-    }
-
-    offset = (page-1)*pageSize
-    limit = pageSize
-
-    let whereObj = {}
-    console.log(activeSearches)
-
-    if (activeSearches) {
-        let searches = activeSearches.split('AND')
-        for (let i = 0; i < searches.length; i++) {
-            let search = searches[i]
-            let searchWhere = search.split(',')
-            let searchKey = searchWhere[0]
-            let searchEquality = searchWhere[1]
-            if (searchEquality === 'equals') {
-                searchEquality = Op.eq
-            } else if (searchEquality === 'like') {
-                searchEquality = Op.like
-                searchWhere[2] = '%' + searchWhere[2] + '%'
-            } else if (searchEquality === 'greaterThan') {
-                searchEquality = Op.gt
-            } else if (searchEquality === 'lessThan') {
-                searchEquality = Op.lt
-            }
-            let searchValue = searchWhere[2]
-            whereObj[searchKey] = {
-                [searchEquality]: searchValue
-            }
-        }
-
-    }
-    let cos = await ContractOpportunity.findAll({
-        offset,
-        limit,
-        where: whereObj
-    })
-    return res.json(cos)
-
-})
-
-app.get("/number-of-opportunities", async (req, res) => {
-    let cos = await ContractOpportunity.findAndCountAll()
-    return res.json({
-        number: cos.count
-    })
-})
-
-app.listen(3000, () => console.log("listening on port 3000"))
