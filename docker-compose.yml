@@ -1,12 +1,29 @@
 version: "3.9"  # optional since v1.27.0
 services:
   backend:
+    restart: always
     build: microservices/backend
     ports:
       - "8080:3000"
-  frontend:
-    build: microservices/frontend/beta-sam-frontend
-    ports:
-      - "8081:80"
     depends_on:
-      - backend
+      - mysql-service
+  
+  mysql-service:
+    restart: always
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_ROOT_PASSWORD=test
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: pma
+      links:
+        - mysql-service
+      environment:
+        PMA_HOST: mysql-service
+        PMA_PORT: 3306
+        PMA_ARBITRARY: 1
+      restart: always
+      ports:
+        - 8081:80

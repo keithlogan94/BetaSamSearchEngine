@@ -1,3 +1,4 @@
+import env from "react-dotenv";
 import logo from './logo.svg';
 import './App.css';
 import ContractOpportunities from "./Components/ContractOpportunities";
@@ -17,6 +18,7 @@ import React from "react";
 import { GridMenuIcon } from "@mui/x-data-grid";
 import axios from "axios";
 import Button from "@mui/material/Button";
+
 
 const styles = theme => ({
     input: {
@@ -180,7 +182,7 @@ class App extends React.Component {
     }
 
     async componentDidMount() {
-        let data = await axios.get("//api.searchengine.beta.sam.recro.kloudrun.com/number-of-opportunities")
+        let data = await axios.get(`//`+ window.env.API_URL +`/number-of-opportunities`)
         console.log(data)
         this.setState({
             numberOfResults: data.data.number
@@ -188,6 +190,7 @@ class App extends React.Component {
     }
 
     render() {
+        console.log(env)
         return (
             <div className="App">
                 <header className="App-header">
