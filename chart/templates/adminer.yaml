@@ -20,10 +20,11 @@ spec:
           image: adminer:latest
 ---
 apiVersion: v1
-kind: NodePort
+kind: Service
 metadata:
   name: adminer-service
 spec:
+  type: NodePort
   selector:
     app: adminer
   ports:
