@@ -1,0 +1,12 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  backend:
+    build: microservices/backend
+    ports:
+      - "8080:3000"
+  frontend:
+    build: microservices/frontend/beta-sam-frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
