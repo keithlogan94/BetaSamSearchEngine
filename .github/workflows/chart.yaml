@@ -1,0 +1,22 @@
+name: Chart
+
+on:
+  push:
+    branches:
+      - infrastructure
+
+jobs:
+  helm:
+    runs-on: helm:latest
+    steps:
+      -
+        name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Build
+        env:
+            REGISTRY: ghcr.io
+            USERNAME: ${{ github.actor }}
+            GITHUB_TOKEN: ${{ secrets.DOCKER_LOGIN_TOKEN }}
+        run: |
+          helm package chart 
