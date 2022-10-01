@@ -25,3 +25,4 @@ jobs:
           echo ${GITHUB_TOKEN} | docker login --username ${USERNAME} --password-stdin ${REGISTRY}
           docker-compose build
           docker-compose push
+
